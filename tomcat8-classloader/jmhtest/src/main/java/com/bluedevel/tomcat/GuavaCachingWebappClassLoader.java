@@ -35,7 +35,7 @@ public class GuavaCachingWebappClassLoader extends org.apache.catalina.loader.We
     private static final int DEFAULT_CACHE_SIZE = 1024;
 
     /** cache instance; defer to parent to load classes */
-    private final LoadingCache<String, Class> cache = CacheBuilder.newBuilder().maximumSize(DEFAULT_CACHE_SIZE).build(
+    private final LoadingCache<String, Class> cache = CacheBuilder.newBuilder().maximumSize(DEFAULT_CACHE_SIZE).concurrencyLevel(16).build(
          new CacheLoader<String, Class>() {
                 @Override
                 public Class load(final String name) throws ClassNotFoundException {
